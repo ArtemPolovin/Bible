@@ -24,3 +24,58 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext.versions = [
+        coreKtx          : "1.3.1",
+        appcompat        : "1.2.0",
+        constraintlayout : "2.0.1",
+        navFragment      : "2.3.0",
+        junit            : "4.12",
+        testExt          : "1.1.2",
+        testEspresso     : "3.3.0",
+        androidanimations: "2.4@aar",
+        easing           : "2.0@aar",
+        navView          : "1.2.1"
+]
+
+ext.core = [
+        coreKtx: "androidx.core:core-ktx:$versions.coreKtx"
+]
+
+ext.appcompat = [
+        appcompat: "androidx.appcompat:appcompat:$versions.appcompat"
+]
+
+ext.constraintlayout = [
+        constraintlayout: "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+]
+
+ext.navigationFragment = [
+        navFragment : "androidx.navigation:navigation-fragment-ktx:$versions.navFragment",
+        navigationUi: "androidx.navigation:navigation-ui:$versions.navFragment",
+        navigationUiKtx: "androidx.navigation:navigation-ui-ktx:$versions.navFragment"
+]
+
+ext.junit = [
+        junit: "junit:junit:$versions.junit"
+]
+
+ext.testExt = [
+        testExt: "androidx.test.ext:junit:$versions.testExt"
+]
+
+ext.testEspresso = [
+        testEspresso: "androidx.test.espresso:espresso-core:$versions.testEspresso"
+]
+
+ext.androidanimations = [
+        androidanimationsLibrary: "com.daimajia.androidanimations:library:$versions.androidanimations"
+]
+
+ext.easing = [
+        easingLibrary: "com.daimajia.easing:library:$versions.easing"
+]
+
+ext.material = [
+        material: "com.google.android.material:material:$versions.navView"
+]

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Bible</string>
+    <string name="welcome_screen_header">BIBLE</string>
+    <string name="creator_text">Made by Artem Polovin</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_ic_title">Books</string>
+    <string name="search_ic_title">Search</string>
+
 </resources>
