@@ -53,6 +53,7 @@ dependencies {
     implementation navigationFragment.navFragment
     implementation navigationFragment.navigationUi
     implementation navigationFragment.navigationUiKtx
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     //Junit
     testImplementation junit.junit
