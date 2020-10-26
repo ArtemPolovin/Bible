@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -30,6 +31,11 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
     }
 }
 
@@ -72,4 +78,22 @@ dependencies {
 
     //NavigationView
     implementation material.material
+
+    //RecyclerView
+    implementation recyclerView.recyclerView
+
+    //Dagger2
+    kapt dagger2.daggerCompiler
+    kapt dagger2.daggerProcessor
+    implementation dagger2.dagger
+    implementation dagger2.daggerSupport
+    implementation dagger2.daggerProducers
+
+    //LiveData
+    implementation lifecycle.viewmodel
+    implementation lifecycle.livedataKtx
+    implementation lifecycle.lifecycleExtentions
+
+    //Gson
+    implementation gson.gson
 }

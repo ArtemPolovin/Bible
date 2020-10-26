@@ -5,4 +5,6 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="primary_black">#000</color>
     <color name="creator_text_color">#A9000000</color>
+    <color name="books_cell_background_color">#524E4D4D</color>
+    <color name="stroke_color">#5E5E5E</color>
 </resources>
