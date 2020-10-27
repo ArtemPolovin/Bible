@@ -12,7 +12,7 @@ import com.example.bible.R
 import kotlinx.android.synthetic.main.activity_welcome_screen_fragment.*
 
 
-class WelcomeScreenFragment : AppCompatActivity() {
+class WelcomeScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
