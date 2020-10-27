@@ -96,4 +96,8 @@ dependencies {
 
     //Gson
     implementation gson.gson
+
+    //RxJava2
+    implementation rxjava2.rxjava2
+    implementation rxjava2Android.rxandroid
 }

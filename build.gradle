@@ -39,7 +39,9 @@ ext.versions = [
         recyclerView     : "1.1.0",
         gson             : "2.8.5",
         dagger2          : "2.28.1",
-        liveData        : "2.2.0"
+        liveData        : "2.2.0",
+        rxjava2         : "2.2.12",
+        rxjava2Android  : "2.1.1"
 ]
 
 ext.core = [
@@ -103,5 +105,13 @@ ext.lifecycle = [
         viewmodel          : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.liveData",
         livedataKtx        : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.liveData",
         lifecycleExtentions: "androidx.lifecycle:lifecycle-extensions:$versions.liveData"
+]
+
+ext.rxjava2 = [
+        rxjava2: "io.reactivex.rxjava2:rxjava:$versions.rxjava2"
+]
+
+ext.rxjava2Android = [
+        rxandroid: "io.reactivex.rxjava2:rxandroid:$versions.rxjava2Android"
 ]
 

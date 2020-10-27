@@ -3,7 +3,7 @@ package com.example.data.di
 import android.content.Context
 import com.example.data.implementationRepo.BooksListRepositoryImpl
 import com.example.data.utils.BibleConverter
-import com.example.domain.repositories.BooksList
+import com.example.domain.repositories.IBooksListRepository
 import com.example.domain.usecases.GetBooksListUseCase
 import com.google.gson.Gson
 import dagger.Module
@@ -26,10 +26,10 @@ class BibleModule(private val context: Context) {
 
     @Provides
     @Singleton
-    fun provideBooksListRepoImpl (booksConverter: BibleConverter): BooksList =
+    fun provideBooksListRepoImpl (booksConverter: BibleConverter): IBooksListRepository =
         BooksListRepositoryImpl(booksConverter)
 
     @Provides
-    fun provideGetBooksListUseCase(booksList: BooksList) = GetBooksListUseCase(booksList)
+    fun provideGetBooksListUseCase(IBooksListRepository: IBooksListRepository) = GetBooksListUseCase(IBooksListRepository)
 
 }
