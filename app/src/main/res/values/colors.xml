@@ -8,4 +8,6 @@
     <color name="books_cell_background_color">#524E4D4D</color>
     <color name="stroke_color">#5E5E5E</color>
     <color name="searchView_background_color">#4D4C4B</color>
+    <color name="text_color_move_page">#0B3BCC</color>
+    <color name="button_stroke_color">#A5A1A1</color>
 </resources>

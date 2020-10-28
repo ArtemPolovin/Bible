@@ -1,5 +1,6 @@
 package com.example.bible.ui.books
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,11 +12,20 @@ import com.example.domain.models.bible.Book
 class BookAdapter : RecyclerView.Adapter<BookAdapter.BooksViewHolder>() {
 
     private val booksList = mutableListOf<Book>()
+    private lateinit var onClickListenerBookId: OnClickListenerBookId
+
+    init {
+        setHasStableIds(true)
+    }
 
     fun setAdapterData(newBooksList: List<Book>) {
         booksList.clear()
         booksList.addAll(newBooksList)
         notifyDataSetChanged()
+    }
+
+    fun onClickItemListener(onClickListenerBookId: OnClickListenerBookId) {
+        this.onClickListenerBookId = onClickListenerBookId
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BooksViewHolder {
@@ -26,18 +36,26 @@ class BookAdapter : RecyclerView.Adapter<BookAdapter.BooksViewHolder>() {
             parent,
             false
         )
-        return BooksViewHolder(cellBook)
+        return BooksViewHolder(cellBook, onClickListenerBookId)
     }
 
     override fun onBindViewHolder(holder: BooksViewHolder, position: Int) {
         holder.bind(booksList[position])
+        holder.clickItem()
     }
 
     override fun getItemCount(): Int {
         return booksList.size
     }
 
-    class BooksViewHolder(cellBook: CellBooksBinding) : RecyclerView.ViewHolder(cellBook.root) {
+    override fun getItemId(position: Int): Long {
+       return  booksList[position].BookId.toLong()
+    }
+
+    class BooksViewHolder(
+        cellBook: CellBooksBinding,
+        private val onClickListener: OnClickListenerBookId?
+    ) : RecyclerView.ViewHolder(cellBook.root) {
 
         private val bookBinding = cellBook
 
@@ -45,5 +63,15 @@ class BookAdapter : RecyclerView.Adapter<BookAdapter.BooksViewHolder>() {
             bookBinding.book = book
         }
 
+        fun clickItem() {
+            itemView.setOnClickListener {
+                onClickListener?.getBookId(itemId.toInt())
+            }
+        }
+
+    }
+
+    interface OnClickListenerBookId {
+        fun getBookId(bookId: Int)
     }
 }

@@ -100,4 +100,6 @@ dependencies {
     //RxJava2
     implementation rxjava2.rxjava2
     implementation rxjava2Android.rxandroid
+
+    implementation "androidx.fragment:fragment-ktx:1.3.0-beta01"
 }
