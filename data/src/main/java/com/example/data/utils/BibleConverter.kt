@@ -1,9 +1,9 @@
 package com.example.data.utils
 
 import android.content.Context
+import android.util.Log
 import com.example.data.R
 import com.example.domain.models.bible.Bible
-import com.example.domain.models.bible.Book
 import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.InputStreamReader
