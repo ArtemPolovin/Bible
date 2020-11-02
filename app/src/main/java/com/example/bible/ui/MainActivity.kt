@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.readomg_page
             )
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
+//        setupActionBarWithNavController(navController, appBarConfiguration)
 
         bottom_navigation.setupWithNavController(navController)
     }
