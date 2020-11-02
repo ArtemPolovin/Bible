@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <solid android:color="@color/books_cell_background_color" />
+    <item android:state_pressed="true">
 
-    <stroke
-        android:color="@color/stroke_color"
-        android:width="0.5dp" />
+        <shape>
 
-</shape>
+
+            <solid android:color="@color/pressed_books_cell_background_color" />
+
+            <stroke android:width="0.5dp" android:color="@color/stroke_color" />
+
+        </shape>
+
+    </item>
+
+    <item>
+
+        <shape>
+
+
+            <solid android:color="@color/not_pressed_books_cell_background_color" />
+
+            <stroke android:width="0.5dp" android:color="@color/stroke_color" />
+
+        </shape>
+
+    </item>
+
+
+
+</selector>

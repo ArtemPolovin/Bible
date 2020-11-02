@@ -22,7 +22,7 @@ class WelcomeScreenActivity : AppCompatActivity() {
         )
         setContentView(R.layout.activity_welcome_screen_fragment)
 
-        supportActionBar?.hide()
+     //   supportActionBar?.hide()
 
         animateView(image_bible)
 
