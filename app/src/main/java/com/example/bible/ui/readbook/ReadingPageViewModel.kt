@@ -10,7 +10,7 @@ import com.example.domain.usecases.GetBooksListUseCase
 
 class ReadingPageViewModel(private val getBooksListUseCase: GetBooksListUseCase) : ViewModel() {
 
-    private var chapterNumber = 1
+    private var chapterNumber = 0
     private var bookId = 0
     private var listOfChapters = listOf<Chapter>()
 
@@ -29,7 +29,8 @@ class ReadingPageViewModel(private val getBooksListUseCase: GetBooksListUseCase)
     private val _chaptersNumbers = MutableLiveData<List<Int>>()
     val chapterNumbers: LiveData<List<Int>> get() = _chaptersNumbers
 
-    fun receiveBookId(numberOfBookId: Int) {
+    fun receiveBookData(numberOfBookId: Int, numberOfChapter: Int ) {
+        chapterNumber = numberOfChapter
         bookId = numberOfBookId
         buildChapter(chapterNumber)
         getChapterList()
@@ -71,8 +72,8 @@ class ReadingPageViewModel(private val getBooksListUseCase: GetBooksListUseCase)
         _chaptersNumbers.value = listOfChapterNumbers
     }
 
-    fun chosenChapter(number: Int) {
-        chapterNumber = number
+    fun chosenChapter(numberOfChapter: Int) {
+        chapterNumber = numberOfChapter
         buildChapter(chapterNumber)
     }
 }

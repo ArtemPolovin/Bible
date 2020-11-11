@@ -6,14 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bible.App
 import com.example.bible.R
 import com.example.bible.utils.BookViewState
+import com.example.bible.utils.FIRST_CHAPTER
 import com.example.bible.utils.Person
+import com.example.domain.models.CellBook
 import kotlinx.android.synthetic.main.fragment_search.*
 import javax.inject.Inject
 
@@ -24,6 +30,8 @@ class SearchFragment : Fragment() {
     lateinit var searchViewModel: SearchViewModel
 
     private lateinit var searchAdapter: SearchAdapter
+
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +47,8 @@ class SearchFragment : Fragment() {
 
         searchViewModel = ViewModelProvider(this, searchFactory).get(SearchViewModel::class.java)
 
+        navController = Navigation.findNavController(view)
+
         searchAdapter = SearchAdapter()
 
         rv_search_scripture.layoutManager =
@@ -52,6 +62,7 @@ class SearchFragment : Fragment() {
         }
 
         setUpCellBook()
+        goToReadingPage()
 
         word_seek_bar.setOnSeekBarChangeListener(setSeekBar)
         char_seek_bar.setOnSeekBarChangeListener(setSeekBar)
@@ -108,6 +119,20 @@ class SearchFragment : Fragment() {
 
         }
 
+    }
+
+    private fun goToReadingPage() {
+        searchAdapter.onClickItemListener(object: SearchAdapter.OnCellBookClickListener{
+            override fun getCellBook(cellBook: CellBook) {
+
+                setFragmentResult("requestKey",
+                    bundleOf("bookId" to cellBook.bookId, "chapterId" to cellBook.chapterId)
+                )
+
+                navController.navigate(R.id.action_nav_search_to_readingPageFragment)
+            }
+
+        })
     }
 
 }

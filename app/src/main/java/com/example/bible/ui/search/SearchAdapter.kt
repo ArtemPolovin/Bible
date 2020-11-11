@@ -2,26 +2,26 @@ package com.example.bible.ui.search
 
 import android.graphics.Color
 import android.os.Build
-import android.text.Html
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.BackgroundColorSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.core.text.HtmlCompat
-import androidx.core.util.rangeTo
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bible.R
 import com.example.bible.databinding.CellSearchPlaceOfScriptureBinding
 import com.example.domain.models.CellBook
-import kotlinx.android.synthetic.main.cell_search_place_of_scripture.view.*
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchAdapterViewHolder>() {
 
     private val cellBookList = mutableListOf<CellBook>()
+    private lateinit var onCellBookClickListener: OnCellBookClickListener
+
+    fun onClickItemListener(onCellBookClickListener: OnCellBookClickListener) {
+        this.onCellBookClickListener = onCellBookClickListener
+    }
 
     fun setUpSearchAdapterData(newList: List<CellBook>) {
         cellBookList.clear()
@@ -36,19 +36,24 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchAdapterViewHolder
             parent,
             false
         )
-        return SearchAdapterViewHolder(cellBook)
+        return SearchAdapterViewHolder(cellBook, onCellBookClickListener)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: SearchAdapterViewHolder, position: Int) {
-        holder.bind(cellBookList[position])
+        val cellBook = cellBookList[position]
+        holder.bind(cellBook)
+        holder.onClick(cellBook)
     }
 
     override fun getItemCount(): Int {
         return cellBookList.size
     }
 
-    class SearchAdapterViewHolder(cellBook: CellSearchPlaceOfScriptureBinding) :
+    class SearchAdapterViewHolder(
+        cellBook: CellSearchPlaceOfScriptureBinding,
+        private val cellBookListener: OnCellBookClickListener?
+    ) :
         RecyclerView.ViewHolder(cellBook.root) {
 
         private val bookBinding = cellBook
@@ -60,25 +65,30 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchAdapterViewHolder
             val originalTExt = cellBook.verse
             val spanString = SpannableString(originalTExt)
 
-           cellBook.matchedWords.forEach {
+            cellBook.matchedWords.forEach {
 
-               val bcsYellow = BackgroundColorSpan(Color.YELLOW)
+                val bcsYellow = BackgroundColorSpan(Color.YELLOW)
 
-               val start = originalTExt.indexOf(it, ignoreCase = true)
-               val end = it.length + start
+                val start = originalTExt.indexOf(it, ignoreCase = true)
+                val end = it.length + start
 
-               spanString.setSpan(bcsYellow, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spanString.setSpan(bcsYellow, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
 
-           }
+            }
             bookBinding.verseText.text = spanString
-
-          /*  val replaceWith = "<span style='background-color:yellow'> $inputText </span>"
-            val originalTExt = cellBook.verse
-            val modifiedString = originalTExt.replace(inputText, replaceWith,true)
-
-            bookBinding.verseText.text = Html.fromHtml(modifiedString, HtmlCompat.FROM_HTML_MODE_LEGACY)*/
 
         }
 
+        fun onClick(cellBook: CellBook) {
+            itemView.setOnClickListener {
+                cellBookListener?.getCellBook(cellBook)
+            }
+
+        }
+
+    }
+
+    interface OnCellBookClickListener {
+        fun getCellBook(cellBook: CellBook)
     }
 }
