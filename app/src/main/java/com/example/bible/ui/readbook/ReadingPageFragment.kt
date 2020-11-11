@@ -1,14 +1,11 @@
 package com.example.bible.ui.readbook
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -45,8 +42,9 @@ class ReadingPageFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
             ViewModelProvider(this, readingPageFactory).get(ReadingPageViewModel::class.java)
 
         setFragmentResultListener("requestKey") { _, bundle ->
-            val bookId = bundle.getInt("bundleKey")
-            readingPageViewModel.receiveBookId(bookId)
+            val bookId = bundle.getInt("bookId")
+            val chapterId = bundle.getInt("chapterId")
+            readingPageViewModel.receiveBookData(bookId,chapterId)
         }
 
         btn_next_chapter.setOnClickListener(this)

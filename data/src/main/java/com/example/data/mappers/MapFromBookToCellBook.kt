@@ -22,7 +22,7 @@ class MapFromBookToCellBook {
                     val matchedWords = mutableListOf<String>()
 
                     if (matchVerse(verse.Text, inputText, wordMatchPercentage, charMatchPercentage, matchedWords)) {
-                        cellBookList.add(CellBook(book.BookName, chapter.ChapterId, verse.VerseId, verse.Text, matchedWords))
+                        cellBookList.add(CellBook(book.BookName, chapter.ChapterId, verse.VerseId, verse.Text, matchedWords,book.BookId))
                     }
                 }
             }

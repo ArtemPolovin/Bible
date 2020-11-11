@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bible.App
 import com.example.bible.R
 import com.example.bible.utils.BookViewState
+import com.example.bible.utils.FIRST_CHAPTER
 import com.example.bible.utils.MINIMUM_SYMBOLS
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -139,7 +140,7 @@ class BookFragment : Fragment() {
         adapter.onClickItemListener(object : BookAdapter.OnClickListenerBookId {
             override fun getBookId(bookId: Int) {
 
-                setFragmentResult("requestKey",bundleOf("bundleKey" to bookId))
+                setFragmentResult("requestKey",bundleOf("bookId" to bookId, "chapterId" to FIRST_CHAPTER))
 
                 navController.navigate(R.id.action_nav_home_to_readingPageFragment)
             }
