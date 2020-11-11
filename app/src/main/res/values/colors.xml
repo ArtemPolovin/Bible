@@ -2,10 +2,10 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#000</color>
     <color name="primary_black">#000</color>
     <color name="creator_text_color">#A9000000</color>
-    <color name="not_pressed_books_cell_background_color">#524E4D4D</color>
+    <color name="not_pressed_button">#524E4D4D</color>
     <color name="stroke_color">#5E5E5E</color>
     <color name="searchView_background_color">#4D4C4B</color>
     <color name="text_color_move_page">#0B3BCC</color>
@@ -14,5 +14,8 @@
     <color name="color_primery_white">#ffff</color>
     <color name="pressed_button_background">#75BDBDBD</color>
     <color name="not_pressed_button_background">@android:color/transparent</color>
-    <color name="pressed_books_cell_background_color">#90CFCDCD</color>
+    <color name="pressed_button">#90CFCDCD</color>
+    <color name="error_text_color">#B83026</color>
+    <color name="empty_seek_bar_color">#90CFCDCD</color>
+    <color name="thump_color_yellow">#E6DB0A</color>
 </resources>

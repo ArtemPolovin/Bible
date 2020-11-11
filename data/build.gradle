@@ -45,4 +45,8 @@ dependencies {
     implementation dagger2.daggerSupport
     implementation dagger2.daggerProducers
 
+    //RxJava2
+    implementation rxjava2.rxjava2
+    implementation rxjava2Android.rxandroid
+
 }
