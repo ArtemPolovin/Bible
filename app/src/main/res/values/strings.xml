@@ -8,5 +8,11 @@
     <string name="search_ic_title">Search</string>
     <string name="prev_page"><![CDATA[< Prev chapter]]></string>
     <string name="next_page"><![CDATA[Next chapter >]]></string>
+    <string name="search_scripture_hint">Enter the text of scripture</string>
+    <string name="search_place_of_scripture_header">Search place of scripture</string>
+    <string name="search_button_text">search</string>
+    <string name="error_text">Nothing was found</string>
+    <string name="char_seek_bar_text">Char match percentage</string>
+    <string name="word_seek_bar_text">Word match percentage</string>
 
 </resources>

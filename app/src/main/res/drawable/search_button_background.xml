@@ -5,10 +5,7 @@
 
         <shape>
 
-
             <solid android:color="@color/pressed_button" />
-
-            <stroke android:width="0.5dp" android:color="@color/stroke_color" />
 
         </shape>
 
@@ -18,15 +15,11 @@
 
         <shape>
 
-
-            <solid android:color="@color/not_pressed_button" />
-
-            <stroke android:width="0.5dp" android:color="@color/stroke_color" />
+            <solid android:color="@color/colorPrimary" />
 
         </shape>
 
     </item>
-
 
 
 </selector>

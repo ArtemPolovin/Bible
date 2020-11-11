@@ -4,7 +4,13 @@ apply plugin: 'kotlin'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //RxJava2
+    implementation rxjava2.rxjava2
+    implementation rxjava2Android.rxandroid
 }
+
+
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
