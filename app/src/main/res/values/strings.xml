@@ -14,5 +14,8 @@
     <string name="error_text">Nothing was found</string>
     <string name="char_seek_bar_text">Char match percentage</string>
     <string name="word_seek_bar_text">Word match percentage</string>
+    <string name="read_bible_text">Reade Bible</string>
+    <string name="home_ic_home">Home</string>
+    <string name="home_header">Home</string>
 
 </resources>

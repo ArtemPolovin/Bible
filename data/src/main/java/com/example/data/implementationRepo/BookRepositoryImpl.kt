@@ -5,12 +5,14 @@ import com.example.data.utils.BibleConverter
 import com.example.domain.models.CellBook
 import com.example.domain.models.bible.Book
 import com.example.domain.repositories.IBookRepository
+import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 
 class BookRepositoryImpl(
     private val bibleConverter: BibleConverter,
-    private val mapper: MapFromBookToCellBook
+    private val mapper: MapFromBookToCellBook,
+    private val schedulersIO: Scheduler
 ) : IBookRepository {
 
     override fun getBooksList(): List<Book> {
@@ -25,7 +27,7 @@ class BookRepositoryImpl(
     ): Single<List<CellBook>> {
 
         return Single.just(bookList)
-            .subscribeOn(Schedulers.io())
+            .subscribeOn(schedulersIO)
             .map {
                 mapper.mapFromBookListToCellBookList(
                     bookList,

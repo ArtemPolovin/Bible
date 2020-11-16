@@ -6,7 +6,7 @@
     app:startDestination="@id/nav_home">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_books"
         android:name="com.example.bible.ui.books.BookFragment"
         android:label="Books"
         tools:layout="@layout/fragment_books" >
@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_nav_home_to_readingPageFragment"
             app:destination="@id/readomg_page" />
+        <action
+            android:id="@+id/action_nav_books_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
     <fragment
         android:id="@+id/nav_search"
@@ -24,10 +27,13 @@
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_nav_search_to_nav_home"
-            app:destination="@id/nav_home" />
+            app:destination="@id/nav_books" />
         <action
             android:id="@+id/action_nav_search_to_readingPageFragment"
             app:destination="@id/readomg_page" />
+        <action
+            android:id="@+id/action_nav_search_to_nav_home2"
+            app:destination="@id/nav_home" />
     </fragment>
     <fragment
         android:id="@+id/readomg_page"
@@ -37,5 +43,23 @@
         <action
             android:id="@+id/action_readingPageFragment_to_nav_search"
             app:destination="@id/nav_search" />
+        <action
+            android:id="@+id/action_readomg_page_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.bible.ui.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_search2"
+            app:destination="@id/nav_search" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_books"
+            app:destination="@id/nav_books" />
+        <action
+            android:id="@+id/action_nav_home_to_readomg_page"
+            app:destination="@id/readomg_page" />
     </fragment>
 </navigation>
