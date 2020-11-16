@@ -49,4 +49,9 @@ dependencies {
     implementation rxjava2.rxjava2
     implementation rxjava2Android.rxandroid
 
+    //Room
+    implementation room.roomRuntime
+    kapt room.roomCompiler
+    implementation room.roomRxjava
+
 }

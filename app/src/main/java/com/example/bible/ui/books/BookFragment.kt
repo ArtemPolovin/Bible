@@ -5,8 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
@@ -47,8 +47,6 @@ class BookFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-    //    (activity as? AppCompatActivity)?.supportActionBar?.hide()
 
         (context?.applicationContext as App).bibleComponent.inject(this)
 
@@ -140,7 +138,10 @@ class BookFragment : Fragment() {
         adapter.onClickItemListener(object : BookAdapter.OnClickListenerBookId {
             override fun getBookId(bookId: Int) {
 
-                setFragmentResult("requestKey",bundleOf("bookId" to bookId, "chapterId" to FIRST_CHAPTER))
+                setFragmentResult(
+                    "requestKey",
+                    bundleOf("bookId" to bookId, "chapterId" to FIRST_CHAPTER)
+                )
 
                 navController.navigate(R.id.action_nav_home_to_readingPageFragment)
             }

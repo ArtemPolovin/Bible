@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.bible.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home,
+                R.id.nav_books,
                 R.id.nav_search,
                 R.id.readomg_page
             )

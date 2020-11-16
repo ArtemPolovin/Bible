@@ -103,4 +103,11 @@ dependencies {
 
     // Fragment-ktx
     implementation fragmentKtx.fragmentKtx
+
+    // CardView
+    implementation cardview.cardview
+
+    //Room
+    implementation room.roomRuntime
+    kapt room.roomCompiler
 }
