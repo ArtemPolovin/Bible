@@ -1,17 +1,21 @@
 package com.example.bible.ui.readbook
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.data.utils.BibleDataCache
 import com.example.domain.models.bible.Book
 import com.example.domain.models.bible.Chapter
 import com.example.domain.usecases.GetBooksListUseCase
 
-class ReadingPageViewModel(private val getBooksListUseCase: GetBooksListUseCase) : ViewModel() {
+class ReadingPageViewModel(
+    private val getBooksListUseCase: GetBooksListUseCase,
+    private val bibleDataCache: BibleDataCache
+) : ViewModel() {
 
     private var chapterNumber = 0
     private var bookId = 0
+    private var savePage = false
     private var listOfChapters = listOf<Chapter>()
 
     private val _chapter = MutableLiveData<String>()
@@ -29,7 +33,8 @@ class ReadingPageViewModel(private val getBooksListUseCase: GetBooksListUseCase)
     private val _chaptersNumbers = MutableLiveData<List<Int>>()
     val chapterNumbers: LiveData<List<Int>> get() = _chaptersNumbers
 
-    fun receiveBookData(numberOfBookId: Int, numberOfChapter: Int ) {
+    fun receiveBookData(numberOfBookId: Int, numberOfChapter: Int, savePage: Boolean) {
+        this.savePage = savePage
         chapterNumber = numberOfChapter
         bookId = numberOfBookId
         buildChapter(chapterNumber)
@@ -43,6 +48,7 @@ class ReadingPageViewModel(private val getBooksListUseCase: GetBooksListUseCase)
     }
 
     private fun buildChapter(chapter: Int) {
+        val bookId = getBookById().BookId
         val chapterBuilder = StringBuilder()
         listOfChapters = getBookById().Chapters
 
@@ -52,6 +58,8 @@ class ReadingPageViewModel(private val getBooksListUseCase: GetBooksListUseCase)
         _chapter.value = chapterBuilder.toString()
         _numberOfChapter.value = chapter
         _lastChapterNumber.value = listOfChapters.size
+
+        saveBiblePage(bookId)
     }
 
     fun onClickButtonSwitchPage(isNextPage: Boolean) {
@@ -75,5 +83,13 @@ class ReadingPageViewModel(private val getBooksListUseCase: GetBooksListUseCase)
     fun chosenChapter(numberOfChapter: Int) {
         chapterNumber = numberOfChapter
         buildChapter(chapterNumber)
+    }
+
+    private fun saveBiblePage(bookId: Int) {
+        if (savePage) {
+            bibleDataCache.saveBookId(bookId)
+            bibleDataCache.saveChapterId(chapterNumber)
+        }
+
     }
 }

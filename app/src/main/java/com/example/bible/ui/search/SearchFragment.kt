@@ -1,7 +1,6 @@
 package com.example.bible.ui.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,8 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bible.App
 import com.example.bible.R
 import com.example.bible.utils.BookViewState
-import com.example.bible.utils.FIRST_CHAPTER
-import com.example.bible.utils.Person
+import com.example.bible.utils.SAVE_PAGE_FALSE
 import com.example.domain.models.CellBook
 import kotlinx.android.synthetic.main.fragment_search.*
 import javax.inject.Inject
@@ -97,14 +95,14 @@ class SearchFragment : Fragment() {
         })
     }
 
-    private val setSeekBar = object: SeekBar.OnSeekBarChangeListener{
+    private val setSeekBar = object : SeekBar.OnSeekBarChangeListener {
         override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             when (seekBar?.id) {
                 R.id.word_seek_bar -> {
                     text_word_seek_bar_percent.text = "$progress%"
                     searchViewModel.setWordMatchPercentage(progress)
                 }
-                R.id.char_seek_bar ->{
+                R.id.char_seek_bar -> {
                     text_char_seek_bar_percent.text = "$progress$"
                     searchViewModel.setCharMatchPercentage(progress)
                 }
@@ -122,11 +120,16 @@ class SearchFragment : Fragment() {
     }
 
     private fun goToReadingPage() {
-        searchAdapter.onClickItemListener(object: SearchAdapter.OnCellBookClickListener{
+        searchAdapter.onClickItemListener(object : SearchAdapter.OnCellBookClickListener {
             override fun getCellBook(cellBook: CellBook) {
 
-                setFragmentResult("requestKey",
-                    bundleOf("bookId" to cellBook.bookId, "chapterId" to cellBook.chapterId)
+                setFragmentResult(
+                    "requestKey",
+                    bundleOf(
+                        "bookId" to cellBook.bookId,
+                        "chapterId" to cellBook.chapterId,
+                        "savePage" to SAVE_PAGE_FALSE
+                    )
                 )
 
                 navController.navigate(R.id.action_nav_search_to_readingPageFragment)

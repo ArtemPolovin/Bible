@@ -17,5 +17,6 @@
     <string name="read_bible_text">Reade Bible</string>
     <string name="home_ic_home">Home</string>
     <string name="home_header">Home</string>
+    <string name="choose_book_title_menu">Choose book</string>
 
 </resources>
