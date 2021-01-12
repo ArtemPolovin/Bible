@@ -1,16 +1,17 @@
 package com.example.bible.ui.readbook
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.example.bible.App
 import com.example.bible.R
 import kotlinx.android.synthetic.main.fragment_reading_page.*
@@ -24,6 +25,8 @@ class ReadingPageFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
     lateinit var readingPageViewModel: ReadingPageViewModel
 
     private lateinit var arrayAdapter: ArrayAdapter<Int>
+
+    private lateinit var navController:NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,8 +47,11 @@ class ReadingPageFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         setFragmentResultListener("requestKey") { _, bundle ->
             val bookId = bundle.getInt("bookId")
             val chapterId = bundle.getInt("chapterId")
-            readingPageViewModel.receiveBookData(bookId,chapterId)
+            val savePage = bundle.getBoolean("savePage")
+            readingPageViewModel.receiveBookData(bookId,chapterId,savePage)
         }
+
+        navController = Navigation.findNavController(view)
 
         btn_next_chapter.setOnClickListener(this)
         btn_prev_chapter.setOnClickListener(this)
@@ -136,6 +142,5 @@ class ReadingPageFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
             spinner.setSelection(arrayAdapter.getPosition(it))
         })
     }
-
 
 }

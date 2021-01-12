@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
@@ -35,6 +34,7 @@ class BookFragment : Fragment() {
     lateinit var bookViewModel: BookViewModel
     lateinit var adapter: BookAdapter
     private lateinit var navController: NavController
+    private var isSavePage: Boolean? = false
 
     private var disposable: Disposable? = null
 
@@ -42,6 +42,7 @@ class BookFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        receiveDataFromMainActivity()
         return inflater.inflate(R.layout.fragment_books, container, false)
     }
 
@@ -59,7 +60,6 @@ class BookFragment : Fragment() {
         rv_books.adapter = adapter
         rv_books.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-
 
         setUpBooks()
         sendFilteredBookListToAdapter()
@@ -140,13 +140,21 @@ class BookFragment : Fragment() {
 
                 setFragmentResult(
                     "requestKey",
-                    bundleOf("bookId" to bookId, "chapterId" to FIRST_CHAPTER)
+                    bundleOf(
+                        "bookId" to bookId,
+                        "chapterId" to FIRST_CHAPTER,
+                        "savePage" to isSavePage
+                    )
                 )
 
-                navController.navigate(R.id.action_nav_home_to_readingPageFragment)
+                navController.navigate(R.id.action_nav_books_to_readingPageFragment)
             }
 
         })
+    }
+
+    private fun receiveDataFromMainActivity() {
+        isSavePage = arguments?.getBoolean("savePage") ?: false
     }
 
     override fun onDestroy() {

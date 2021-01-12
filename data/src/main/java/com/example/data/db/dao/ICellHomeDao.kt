@@ -1,9 +1,6 @@
 package com.example.data.db.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.data.db.tables.CellHomeEntity
 import io.reactivex.Single
 
@@ -18,5 +15,8 @@ interface ICellHomeDao {
 
     @Delete
     fun removeCell(cell: CellHomeEntity)
+
+    @Update
+    fun updateCellHome(cellHome: CellHomeEntity): Int
 
 }

@@ -15,10 +15,16 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     private val cellHomeList = mutableListOf<CellHome>()
 
+    private lateinit var onClickHomeItemListener: IOnClickHomeItemListener
+
     fun setupHomeAdapter(newCellHomeList: List<CellHome>) {
         cellHomeList.clear()
         cellHomeList.addAll(newCellHomeList)
         notifyDataSetChanged()
+    }
+
+    fun onClickItemListener(onClickHomeItemListener: IOnClickHomeItemListener) {
+        this.onClickHomeItemListener = onClickHomeItemListener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -28,18 +34,24 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
             parent,
             false
         )
-        return HomeViewHolder(cellHomeBinding, parent.context)
+        return HomeViewHolder(cellHomeBinding, parent.context, onClickHomeItemListener)
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        holder.bind(cellHomeList[position])
+        val cellHome = cellHomeList[position]
+        holder.bind(cellHome)
+        holder.onClickItem(cellHome.title)
     }
 
     override fun getItemCount(): Int {
         return cellHomeList.size
     }
 
-    class HomeViewHolder(cellHome: CellHomeBinding, private val context: Context) :
+    class HomeViewHolder(
+        cellHome: CellHomeBinding,
+        private val context: Context,
+        private val onClickHomeItemListener: IOnClickHomeItemListener
+    ) :
         RecyclerView.ViewHolder(cellHome.root) {
 
         private val cellHomeBinding = cellHome
@@ -51,13 +63,25 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
             setBackground(cellHome.imagePath)
         }
 
+        fun onClickItem(title: String) {
+            itemView.setOnClickListener {
+                onClickHomeItemListener.getTitle(title)
+            }
+        }
+
         private fun setBackground(drawablePath: String) {
-            val imageResource = context.resources.getIdentifier(drawablePath, null, context.packageName)
+            val imageResource =
+                context.resources.getIdentifier(drawablePath, null, context.packageName)
             val image =
                 ResourcesCompat.getDrawable(context.resources, imageResource, null)
             linearLayout.background = image
 
         }
 
+
+    }
+
+    interface IOnClickHomeItemListener {
+        fun getTitle(title: String)
     }
 }

@@ -1,6 +1,7 @@
 package com.example.data.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.data.db.Database
 import com.example.data.db.dao.ICellHomeDao
@@ -9,6 +10,8 @@ import com.example.data.implementationRepo.CellHomeRepositoryImpl
 import com.example.data.mappers.CellHomeMapper
 import com.example.data.mappers.MapFromBookToCellBook
 import com.example.data.utils.BibleConverter
+import com.example.data.utils.BibleDataCache
+import com.example.data.utils.SHARED_PREF
 import com.example.domain.repositories.IBookRepository
 import com.example.domain.repositories.ICellHomeRepo
 import com.example.domain.usecases.GetBooksListUseCase
@@ -85,6 +88,15 @@ class BibleModule(private val context: Context) {
     @Provides
     @Named("io")
     fun provideSchedulersIO(): Scheduler = Schedulers.io()
+
+    @Provides
+    @Singleton
+    fun provideSharePreferences(): SharedPreferences =
+        context.getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
+
+    @Provides
+    @Singleton
+    fun provideBookDataCache(sharedPref: SharedPreferences) = BibleDataCache(sharedPref)
 
 
 

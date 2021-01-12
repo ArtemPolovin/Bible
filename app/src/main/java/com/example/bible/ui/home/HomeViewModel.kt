@@ -4,13 +4,16 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.data.utils.BibleDataCache
 import com.example.domain.models.CellHome
 import com.example.domain.usecases.GetCellHomeListUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import java.util.*
 
 class HomeViewModel(
-    private val getCellHomeListUseCase: GetCellHomeListUseCase
+    private val getCellHomeListUseCase: GetCellHomeListUseCase,
+    private val bibleDataCache: BibleDataCache
 ) : ViewModel() {
 
     private var disposable: Disposable? = null
@@ -34,6 +37,11 @@ class HomeViewModel(
                 }
             )
     }
+
+
+    fun getBookId(): Int = bibleDataCache.loadBookId()
+
+    fun getChapterId(): Int = bibleDataCache.loadChapterId()
 
     override fun onCleared() {
         super.onCleared()
