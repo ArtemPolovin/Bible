@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.bible.App
 import com.example.bible.R
+import com.example.bible.utils.SAVE_PAGE_TRUE
 import kotlinx.android.synthetic.main.fragment_reading_page.*
 import javax.inject.Inject
 
@@ -32,6 +33,7 @@ class ReadingPageFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_reading_page, container, false)
     }
 
@@ -141,6 +143,21 @@ class ReadingPageFragment : Fragment(), View.OnClickListener, AdapterView.OnItem
         readingPageViewModel.numberOfChapter.observe(viewLifecycleOwner, Observer{
             spinner.setSelection(arrayAdapter.getPosition(it))
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.reade_book_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val bundle = Bundle()
+        bundle.putBoolean("savePage", SAVE_PAGE_TRUE)
+
+        navController.navigate(R.id.action_reading_page_to_nav_books,bundle)
+        return true
     }
 
 }

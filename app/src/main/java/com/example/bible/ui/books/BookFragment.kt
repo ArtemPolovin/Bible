@@ -72,12 +72,12 @@ class BookFragment : Fragment() {
     private fun setUpBooks() {
         bookViewModel.bookViewState.observe(viewLifecycleOwner, Observer {
 
-            pull_refresh_layout.isRefreshing = false
+            pull_refresh_topics.isRefreshing = false
             rv_books.visibility = View.GONE
 
             when (it) {
                 BookViewState.Loading -> {
-                    pull_refresh_layout.isRefreshing = true
+                    pull_refresh_topics.isRefreshing = true
                 }
                 is BookViewState.BooksLoaded -> {
                     rv_books.visibility = View.VISIBLE
@@ -129,7 +129,7 @@ class BookFragment : Fragment() {
 
 
     private fun refreshingBooksLis() {
-        pull_refresh_layout.setOnRefreshListener {
+        pull_refresh_topics.setOnRefreshListener {
             bookViewModel.refreshBooksList()
         }
     }

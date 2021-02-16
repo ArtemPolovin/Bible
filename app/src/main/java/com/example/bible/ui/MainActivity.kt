@@ -37,22 +37,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.reading_page
             )
         )
-//        setupActionBarWithNavController(navController, appBarConfiguration)
 
         bottom_navigation.setupWithNavController(navController)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-         this.menuInflater.inflate(R.menu.reade_book_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val bundle = Bundle()
-        bundle.putBoolean("savePage", SAVE_PAGE_TRUE)
-
-        navController.navigate(R.id.action_reading_page_to_nav_books,bundle)
-        return true
-    }
 }
