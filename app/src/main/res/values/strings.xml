@@ -18,5 +18,13 @@
     <string name="home_ic_home">Home</string>
     <string name="home_header">Home</string>
     <string name="choose_book_title_menu">Choose book</string>
+    <string name="new_topic">New topic</string>
+    <string name="hint_topic">Topic</string>
+    <string name="error_topics">Error!! Please try again</string>
+    <string name="note_topics_tittle">Note Topics</string>
+    <string name="hint_note">Enter text</string>
+    <string name="hint_note_page_title">Enter title</string>
+    <string name="note_list_actionbar_title">Note list</string>
+    <string name="write_note_actionbar_title">Write note</string>
 
 </resources>

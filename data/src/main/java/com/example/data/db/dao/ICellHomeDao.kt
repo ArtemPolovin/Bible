@@ -19,4 +19,7 @@ interface ICellHomeDao {
     @Update
     fun updateCellHome(cellHome: CellHomeEntity): Int
 
+    @Query("DELETE  FROM cellhomeentity")
+    fun removeAll()
+
 }

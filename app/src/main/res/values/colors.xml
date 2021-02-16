@@ -18,4 +18,7 @@
     <color name="error_text_color">#B83026</color>
     <color name="empty_seek_bar_color">#90CFCDCD</color>
     <color name="thump_color_yellow">#E6DB0A</color>
+    <color name="topics_error_text_color">#9B1006</color>
+    <color name="cell_topic_background_color">#28A3A2A2</color>
+    <color name="background_cell_note_clolor">#B5DFDDDC</color>
 </resources>

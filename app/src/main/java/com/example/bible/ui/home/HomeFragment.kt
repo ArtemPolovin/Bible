@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bible.App
 import com.example.bible.R
+import com.example.bible.utils.NOTE_TITLE
 import com.example.bible.utils.READE_BIBLE_TITLE
 import com.example.bible.utils.SAVE_PAGE_FALSE
 import com.example.bible.utils.SAVE_PAGE_TRUE
@@ -74,7 +75,9 @@ class HomeFragment : Fragment() {
                             )
                         )
                         navController.navigate(R.id.action_nav_home_to_reading_page)
+
                     }
+                    NOTE_TITLE ->  navController.navigate(R.id.action_nav_home_to_topicFragment)
 
                 }
             }

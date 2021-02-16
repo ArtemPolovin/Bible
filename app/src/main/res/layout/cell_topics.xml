@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@color/cell_topic_background_color">
+
+    <TextView
+        android:id="@+id/cell_text_topic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Some topic about somthing"
+        android:textSize="20sp"
+        android:textColor="@color/primary_black"
+        android:textStyle="bold"
+        android:padding="8dp"/>
+
+</androidx.cardview.widget.CardView>

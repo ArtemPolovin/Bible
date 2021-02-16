@@ -64,5 +64,35 @@
         <action
             android:id="@+id/action_nav_home_to_reading_page"
             app:destination="@id/reading_page" />
+        <action
+            android:id="@+id/action_nav_home_to_topicFragment"
+            app:destination="@id/topicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/topicFragment"
+        android:name="com.example.bible.ui.note.topics.TopicFragment"
+        android:label="Note Topics"
+        tools:layout="@layout/fragment_note_topic" >
+        <action
+            android:id="@+id/action_topicFragment_to_noteFragment"
+            app:destination="@id/noteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noteFragment"
+        android:name="com.example.bible.ui.note.notes.NoteFragment"
+        android:label="fragment_note"
+        tools:layout="@layout/fragment_note" >
+        <action
+            android:id="@+id/action_noteFragment_to_writeNoteFragment"
+            app:destination="@id/writeNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/writeNoteFragment"
+        android:name="com.example.bible.ui.note.notepaage.WriteNoteFragment"
+        android:label="fragment_write_note"
+        tools:layout="@layout/fragment_write_note" >
+        <action
+            android:id="@+id/action_writeNoteFragment_to_noteFragment"
+            app:destination="@id/noteFragment" />
     </fragment>
 </navigation>
